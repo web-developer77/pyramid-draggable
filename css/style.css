@@ -43,6 +43,18 @@
   border-top: 20px solid red; 
 }
 
+.card {
+  background: #fff;
+  width: 80px;
+  height: 120px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid darkgray;
+  position: relative;
+}
+
 html,
 body {
   width: 100%;
@@ -356,17 +368,6 @@ video {
   
 }
 
-.card {
-  background: #fff;
-  width: 80px;
-  height: 120px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid darkgray;
-  position: relative;
-}
 
 @media screen and (max-width: 800px){
   .slider-container {

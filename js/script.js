@@ -1,24 +1,17 @@
-//  Mobile responsive
-if ( $(window).width() < 800) {
-  $(".slider-container").show();
-  $(".leftside").hide();
-  
-} else {
-  $(".slider-container").hide();
-  $(".leftside").show();
-}
+//  mouse event for drag and drop
+// Consts
+let sliderContainer = document.querySelector('.slider-container');
+let innerSlider = document.querySelector('.inner-slider');
 
-$(window).resize(function () {
-  if ($(window).width() < 800) {
-    $(".slider-container").show();
-    $(".leftside").hide();         
-  } else {
-    $(".slider-container").hide();
-    $(".leftside").show();
-  }
-});
+let pressed = false;
+let startX;
+let x;
+let offsetX ;
 
-// Drag and Drop funcion
+
+
+
+// Drag and Draop funcion
 const sorting = function() {
   
   const columns = document.querySelectorAll(".column");
@@ -30,8 +23,7 @@ const sorting = function() {
       group: {
         // name: "shared",         
         put: function( to, from ) {
-          const to_className = to.el.className ;
-          
+          const to_className = to.el.className ;          
           
           if ( to_className.indexOf('inner-slider') > -1 || 
                to_className.indexOf('leftside') > -1 ) 
@@ -48,8 +40,6 @@ const sorting = function() {
       onEnd: function(e) {
         const target = e.to ;
 
-        console.log( target.className.indexOf('inner-slider') ) ;
-        
         if (  $(window).width() < 800 && 
               target.className.indexOf('inner-slider') > -1 ) 
         {
@@ -64,19 +54,75 @@ const sorting = function() {
   });
   
 }
-
 sorting();
 
-//  mouse event for drag and drop
-let sliderContainer = document.querySelector('.slider-container');
-let innerSlider = document.querySelector('.inner-slider');
+// Making Cards on the desktop
+const drawCards_desktop = function() {  
+  let allofCards = ( $('div.list-group-item').length ) ;
+  if ( allofCards == 0) {
+    for( let i=1; i <=10; i++) {
+      const innerHTML = '<div class="list-group-item" ><span class="leftCorner-handle"aria-hidden="true"></span>Card'+i+'</div>' ;
+      $('div.leftside').append( innerHTML ) ;
+    }
+    return
+  } else {
+    let numofCards_mobile = $('div.inner-slider').text().replace(/\s/g,'').split('Card')  ;
+    
+    for ( let i = 1; i < numofCards_mobile.length; i ++ ) {
+      const innerHTML = '<div class="list-group-item" ><span class="leftCorner-handle"aria-hidden="true"></span>Card'+ numofCards_mobile[i] +'</div>' ;
+      $('div.leftside').append( innerHTML ) ;
+    }
+    $('div.inner-slider').empty() ;    
+  }
+}
 
-let pressed = false;
-let startX;
-let x;
-let offsetX ;
+const drawCards_mobile = () => {
+  let allofCards = ( $('div.list-group-item').length ) ;
+  if ( allofCards == 0) {
+    for( let i=1; i <=10; i++) {
+      const innerHTML = '<div class="list-group-item" ><span class="leftCorner-handle"aria-hidden="true"></span>Card'+i+'</div>' ;
+      $('div.inner-slider').append( innerHTML ) ;
+    }
+    return
+  } else {
+    let numofCards_mobile = $('div.leftside').text().replace(/\s/g,'').split('Card')  ;
+    
+    for ( let i = 1; i < numofCards_mobile.length; i ++ ) {
+      const innerHTML = '<div class="list-group-item" ><span class="leftCorner-handle"aria-hidden="true"></span>Card'+ numofCards_mobile[i] +'</div>' ;
+      $('div.inner-slider').append( innerHTML ) ;
+    }
+    $('div.leftside').empty() ;    
+  }
+}
+
+//  Mobile responsive
+if ( $(window).width() < 800) {
+  $(".slider-container").show();
+  $(".leftside").hide();
+  
+  drawCards_mobile() ;
+  
+} else {
+  $(".slider-container").hide();
+  $(".leftside").show();
+  
+  drawCards_desktop() ;
+}
+
+$(window).resize(function () {
+  if ($(window).width() < 800) {
+    $(".slider-container").show();
+    $(".leftside").hide();        
+    drawCards_mobile() ; 
+  } else {
+    $(".slider-container").hide();
+    $(".leftside").show();
+    drawCards_desktop() ;
+  }
+});
 
 
+// Desktop viewpoint
 $('div.slider-container')
   .mouseenter( function() {
     sliderContainer.style.cursor = "grab";
@@ -96,7 +142,7 @@ $('div.slider-container')
     // sorting() ;
   }) ;
 
-
+  
 sliderContainer.addEventListener("mousedown", (e) => {
   pressed = true;
   offsetX = e.clientX - ($('body').width() - $('div.slider-container').width()) / 2 ;
@@ -139,28 +185,6 @@ const checkBoundary = () => {
   }
 };
 
-
-// const setGap = ( innerSlider, beforeGap ) => {
-  
-//   if ( parseInt( $('div.inner-slider').width() ) < parseInt( $('div.slider-container').width() ) ) {
-//     let numCard = $('div.card').length 
-//     let buffer_newGap = ( parseInt( $('div.slider-container').width() ) - parseInt( $('div.inner-slider').width() ) ) / (numCard - 1);
-    
-//     innerSlider.style.gap = `${ buffer_newGap + beforeGap }px`;    
-//   }
-// }
-
-
-setInterval(() => {
-  checkBoundary();
-  // console.log( $('div.card-position .card') ,'card') ;
-  
-}, 10);
-
-
-
-
-
 // Mobile actions 
 sliderContainer.addEventListener("touchstart", (e) => {
   pressed = true;
@@ -192,4 +216,23 @@ sliderContainer.addEventListener("touchmove", (e) => {
   innerSlider.style.left = `${ offsetX - startX}px`;
   checkBoundary();  
 });
+
+// const setGap = ( innerSlider, beforeGap ) => {
+  
+//   if ( parseInt( $('div.inner-slider').width() ) < parseInt( $('div.slider-container').width() ) ) {
+//     let numCard = $('div.card').length 
+//     let buffer_newGap = ( parseInt( $('div.slider-container').width() ) - parseInt( $('div.inner-slider').width() ) ) / (numCard - 1);
+    
+//     innerSlider.style.gap = `${ buffer_newGap + beforeGap }px`;    
+//   }
+// }
+
+
+setInterval(() => {
+  checkBoundary();
+}, 10);
+
+
+
+
 
