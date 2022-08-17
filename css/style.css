@@ -5,61 +5,32 @@
   content-visibility: hidden;
 }
 
-
-.column {
-  /* flex-basis: 20%;
-  background: #ddd;
-  min-height: 90vh;
-  padding: 5px;
-  border-radius: 10px; */
-}
-.column h1 {
-  text-align: center;
-  font-size: 22px;
-}
 .list-group-item {
   background: #fff;
   width: 80px;
   height: 120px;
   border-radius: 5px;
-  /* cursor: pointer; */
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid darkgray;
   position: relative;
 }
+
 .leftCorner-handle {
-  cursor: pointer ;  
-  position: absolute ;
-  top: 0 ;
-  left: 0 ; 
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
 
   width: 0;
-  height: 0;  
+  height: 0;
   border-left: 0;
   border-right: 20px solid transparent;
   border-bottom: 0;
-  border-top: 20px solid red; 
+  border-top: 20px solid red;
 }
 
-.card {
-  background: #fff;
-  width: 80px;
-  height: 120px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid darkgray;
-  position: relative;
-}
-
-html,
-body {
-  width: 100%;
-  height: 100%;
-}
 body {
   margin: 0;
   padding: 0;
@@ -71,106 +42,13 @@ body {
   text-rendering: geometricPrecision;
 }
 
-a,
-abbr,
-acronym,
-address,
-applet,
-article,
-aside,
-audio,
-b,
-big,
-blockquote,
-canvas,
-caption,
-center,
-cite,
-code,
-dd,
-del,
-details,
-dfn,
-div,
-dl,
-dt,
-em,
-embed,
-fieldset,
-figcaption,
-figure,
-footer,
-form,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-header,
-hgroup,
-i,
-iframe,
-img,
-ins,
-kbd,
-label,
-legend,
-li,
-mark,
-menu,
-nav,
-object,
-ol,
-output,
-p,
-pre,
-q,
-ruby,
-s,
-samp,
-section,
-small,
-span,
-strike,
-strong,
-sub,
-summary,
-sup,
-table,
-tbody,
-td,
-tfoot,
-th,
-thead,
-time,
-tr,
-tt,
-u,
-ul,
-var,
-video {
-  margin: 0;
-  padding: 0;
-  vertical-align: baseline;
-  border: 0;
-  font-weight: 100;
-}
-
-*,
-*::before,
-*::after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
 .pyramid-card-group {
   margin: 0 auto;
   width: 100%;
   max-width: 1400px;
   overflow: hidden;
 }
+
 .pyramid-card-group div::after {
   clear: both;
   margin: 0;
@@ -204,30 +82,13 @@ video {
   list-style-type: none;
 }
 
-.card-item {
-  margin: 5px;
-  display: block;
-  float: left;
-  list-style-type: none;
-}
-.card-item .card-item-inner {
-  width: 80px;
-  height: 120px;
-  line-height: 120px;
-  text-align: center;
-  border: 1px solid #bbb;
-
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-}
-
 .card-row {
   margin: 0 0 2px;
   text-align: center;
   display: flex;
   justify-content: center;
 }
+
 .card-position {
   position: relative;
   margin: 2px;
@@ -242,6 +103,7 @@ video {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
+
 .card-position-span {
   position: absolute;
   top: 50%;
@@ -275,21 +137,6 @@ video {
   }
 }
 
-/* OWL Slider */
-.owl-carousel {
-  display: block;
-}
-.owl-carousel .owl-stage-outer {
-  overflow: visible;
-}
-
-.draggable {
-  background-color: #fff;
-}
-.draggable.ui-draggable-dragging {
-  display: block;
-  background-color: #fff;
-}
 .droppable {
   background: rgba(50, 150, 200, 0.2);
 
@@ -318,25 +165,9 @@ video {
   flex-wrap: wrap;
 }
 
-#owl-demo .item {
-  background: white;
-  padding: 48px 20px;
-  margin: 0 auto;
-  color: black;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 5px;
-  text-align: center;
-  border: 1px solid darkgray;
-  width: 80px;
-  height: 120px;
-}
-
 .pyramid-column {
   width: 70%;
 }
-
-
 
 .container {
   font-family: "Trebuchet MS", sans-serif;
@@ -348,33 +179,27 @@ video {
 }
 
 .slider-container {
-  /* border: solid red; */
   width: 80%;
   height: 120px;
   position: relative;
-  /* position: absolute;
-  top: 90%;
-  left: 50%; */
-  /* transform: translate(-50%, -50%); */
   overflow: hidden;
 }
+
 .inner-slider {
   display: flex;
   gap: 20px;
   position: absolute;
   top: 0;
-  left: 0;  
+  left: 0;
   background-color: grey;
-  
 }
 
-
-@media screen and (max-width: 800px){
+@media screen and (max-width: 800px) {
   .slider-container {
-    border: solid grey 1px;    
+    border: solid grey 1px;
   }
-  .container {    
-    padding-top: 0px; 
-    padding-bottom: 20px ;
-  } 
+  .container {
+    padding-top: 0px;
+    padding-bottom: 20px;
+  }
 }
