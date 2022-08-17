@@ -20,7 +20,9 @@ const sorting = function () {
         // name: "shared",
         put: function (to, from) {
           const to_className = to.el.className;
-
+          if(from.el.className === "droppable card-position column dropped") {
+            from.el.className = "droppable card-position column"
+          }
           if (
             to_className.indexOf("inner-slider") > -1 ||
             to_className.indexOf("leftside") > -1
@@ -36,6 +38,10 @@ const sorting = function () {
 
       onEnd: function (e) {
         const target = e.to;
+        console.log(target.className)
+        if(target.className === "droppable card-position column"){
+          target.className = "droppable card-position column dropped"
+        }
 
         if (
           $(window).width() < 800 &&
